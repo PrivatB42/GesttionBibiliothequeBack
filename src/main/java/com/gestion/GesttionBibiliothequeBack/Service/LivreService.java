@@ -2,6 +2,8 @@ package com.gestion.GesttionBibiliothequeBack.Service;
 
 import com.gestion.GesttionBibiliothequeBack.Entity.Livre;
 import com.gestion.GesttionBibiliothequeBack.Entity.User;
+import com.gestion.GesttionBibiliothequeBack.Exception.LivreNotFoundException;
+import com.gestion.GesttionBibiliothequeBack.Exception.UserNotFoundException;
 import com.gestion.GesttionBibiliothequeBack.Repository.LivreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,9 @@ public class LivreService {
     @Autowired
     private LivreRepository repo;
 
-    public void Save(Livre livre){
-        repo.save(livre);
+    public Livre Save(Livre livre){
+        System.out.println("Enregistrement du livre ");
+        return repo.save(livre);
     }
 
     public List<Livre> getLivre(){
@@ -24,7 +27,8 @@ public class LivreService {
     }
 
     public Livre getLivreById(int id){
-        Optional<Livre> livre = repo.findById(id);
+        Optional<Livre> livre = Optional.ofNullable(repo.findById(id).orElseThrow(() ->
+                new LivreNotFoundException(id)));
         return livre.get();
     }
 

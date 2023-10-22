@@ -15,7 +15,7 @@ public class Consultation {
     private int Id;
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date DateConsultation;
+    private String DateConsultation;
 
     @Column(name = "nbreconsultation")
     private int NbreConsultation;

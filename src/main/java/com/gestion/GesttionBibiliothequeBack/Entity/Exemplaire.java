@@ -11,6 +11,9 @@ public class Exemplaire {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int Id;
 
+    @Column(name="photo")
+    private String Photo;
+
     @Column(name="nbreexemplaire")
     private int NbreExemplaire;
 

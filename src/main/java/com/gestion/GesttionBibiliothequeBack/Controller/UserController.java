@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Cette classe permet de gerer les utilisateurs
 @RestController
 @RequestMapping("/biblio/users")
 public class UserController {

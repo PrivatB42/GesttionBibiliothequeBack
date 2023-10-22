@@ -1,10 +1,14 @@
 package com.gestion.GesttionBibiliothequeBack.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -18,7 +22,7 @@ public class User {
     private String Prenom;
 
     @Column(name = "username", length = 45, nullable = false)
-    private String Username;
+    private String username;
 
     @Column(name = "email", length = 45)
     private String Email;
@@ -29,7 +33,5 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role Role;
-
-
 
 }

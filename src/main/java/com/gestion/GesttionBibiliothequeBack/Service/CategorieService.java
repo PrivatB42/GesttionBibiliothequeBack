@@ -1,6 +1,7 @@
 package com.gestion.GesttionBibiliothequeBack.Service;
 
 import com.gestion.GesttionBibiliothequeBack.Entity.Categorie;
+import com.gestion.GesttionBibiliothequeBack.Exception.CategorieNotFoundException;
 import com.gestion.GesttionBibiliothequeBack.Repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class CategorieService {
     private CategorieRepository repo;
 
 
-    public void Save(Categorie categorie){
-        repo.save(categorie);
+    public Categorie Save(Categorie categorie){
+        return repo.save(categorie);
     }
 
     public List<Categorie> getCategorie (){
@@ -24,7 +25,8 @@ public class CategorieService {
     }
 
     public Categorie findById (Integer id){
-        Optional<Categorie> categorie = repo.findById(id);
+        Optional<Categorie> categorie = Optional.ofNullable(repo.findById(id).orElseThrow(() ->
+                new CategorieNotFoundException(id)));
         return categorie.get();
     }
 

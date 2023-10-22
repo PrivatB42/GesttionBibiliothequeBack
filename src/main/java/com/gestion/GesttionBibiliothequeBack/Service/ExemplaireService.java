@@ -2,6 +2,7 @@ package com.gestion.GesttionBibiliothequeBack.Service;
 
 import com.gestion.GesttionBibiliothequeBack.Entity.Exemplaire;
 import com.gestion.GesttionBibiliothequeBack.Entity.User;
+import com.gestion.GesttionBibiliothequeBack.Exception.ExemplaireNotFoundException;
 import com.gestion.GesttionBibiliothequeBack.Repository.ExemplaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class ExemplaireService {
     private ExemplaireRepository repo;
 
 
-    public void Save(Exemplaire exemplaire){
-        repo.save(exemplaire);
+    public Exemplaire Save(Exemplaire exemplaire){
+        return repo.save(exemplaire);
     }
 
     public List<Exemplaire> getExemplaire(){
@@ -25,7 +26,8 @@ public class ExemplaireService {
     }
 
     public Exemplaire getExemplaireById(int id){
-        Optional<Exemplaire> exemplaire = repo.findById(id);
+        Optional<Exemplaire> exemplaire = Optional.ofNullable(repo.findById(id).orElseThrow(() ->
+                new ExemplaireNotFoundException(id)));
         return exemplaire.get();
     }
 

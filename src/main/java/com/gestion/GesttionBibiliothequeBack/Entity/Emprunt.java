@@ -15,10 +15,13 @@ public class Emprunt {
     private int Id;
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date DateEmprunt;
+    private String DateEmprunt;
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date DateRetour;
+    private String DateRetour;
+
+    @Column(name="etat")
+    private String Etat;
 
     @ManyToOne
     @JoinColumn(name="user_id")
