@@ -15,7 +15,7 @@
 	<description>Projet pour la gestion de la bibliothque de l'ESATIC</description>
 
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
 		<start-class>com.gestion.GesttionBibiliothequeBack.GesttionBibiliothequeBackApplication</start-class>
 	</properties>
 
