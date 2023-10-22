@@ -5,4 +5,4 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 COPY --from=build /target/GesttionBibiliothequeBack-0.0.1-SNAPSHOT.jar GesttionBibiliothequeBack.jar
 EXPOSE 8081
-ENTRYPOINT ["java","-jar","demo.jar"]
+ENTRYPOINT ["java","-jar","GesttionBibiliothequeBack.jar"]
