@@ -23,13 +23,16 @@ public class WebSecurityConfig {
         http
                 /*.securityMatcher("/biblio")*/
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers( "/biblio/users/**", "/livre/add", "/livre/delete/**",
-                                "/exemplaire/add", "/exemplaire/delete/**", "/categorie/add",
-                                "/categorie/delete" ).hasRole("ADMIN")
+                        .requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
+                                "/biblio/exemplaire/add", "/biblio/exemplaire/delete/**", "/biblio/categorie/add",
+                                "/biblio/categorie/delete" ).hasRole("ADMIN")
                         .requestMatchers("/biblio/exemplaire").hasRole("USER")
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/biblio/livre/all")
+                        .permitAll()
                 )
                 .logout((logout) -> logout
                         .invalidateHttpSession(true)
