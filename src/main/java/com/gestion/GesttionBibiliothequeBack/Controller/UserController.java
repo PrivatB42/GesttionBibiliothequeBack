@@ -1,11 +1,14 @@
 package com.gestion.GesttionBibiliothequeBack.Controller;
 
+import com.gestion.GesttionBibiliothequeBack.Entity.Role;
 import com.gestion.GesttionBibiliothequeBack.Entity.User;
+import com.gestion.GesttionBibiliothequeBack.Repository.RoleRepository;
 import com.gestion.GesttionBibiliothequeBack.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //Cette classe permet de gerer les utilisateurs
 @RestController
@@ -15,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private RoleRepository repo;
 
     @PostMapping("/save")
     public User SaveUser(@RequestBody User user){
@@ -36,5 +42,15 @@ public class UserController {
         service.deleteById(id);
     }
 
+    @GetMapping("/role/all")
+    public List<Role> getAllRoles(){
+        return repo.findAll();
+    }
+
+    @GetMapping("/role/{id}")
+    public Role getRole(@PathVariable int id){
+        Optional<Role> role = repo.findById(id);
+        return role.get();
+    }
 
 }
