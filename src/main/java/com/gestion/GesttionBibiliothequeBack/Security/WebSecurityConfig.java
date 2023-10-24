@@ -54,12 +54,12 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    @Bean
+    /*@Bean
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-/*
+*//*
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH", "OPTIONS"));
-*/
+*//*
         configuration.applyPermitDefaultValues();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedHeader("*");
@@ -73,7 +73,7 @@ public class WebSecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
+    }*/
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

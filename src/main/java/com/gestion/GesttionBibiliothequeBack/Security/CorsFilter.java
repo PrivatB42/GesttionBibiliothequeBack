@@ -1,3 +1,4 @@
+/*
 package com.gestion.GesttionBibiliothequeBack.Security;
 
 import jakarta.servlet.*;
@@ -40,4 +41,4 @@ public class CorsFilter implements Filter {
         //not needed
     }
 
-}
+}*/
