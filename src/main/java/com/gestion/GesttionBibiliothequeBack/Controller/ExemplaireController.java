@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //Cette classe permet de gerer les informations des exemplaires
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/exemplaire")
 public class ExemplaireController {
 

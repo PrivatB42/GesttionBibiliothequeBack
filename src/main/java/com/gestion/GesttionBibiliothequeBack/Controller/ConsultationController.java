@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //Classe permet d'enregistrer les informations de consultation
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/consultation")
 public class ConsultationController {
 

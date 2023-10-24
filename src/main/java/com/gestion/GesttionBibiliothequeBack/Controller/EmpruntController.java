@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //Classe permet de gerer les emprunts
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/emprunt")
 public class EmpruntController {
 

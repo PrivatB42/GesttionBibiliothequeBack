@@ -9,8 +9,8 @@ import java.util.List;
 
 
 //Cette classe permet de gerer les livres
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/livre")
 public class LivreController {
 

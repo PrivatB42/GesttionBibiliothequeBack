@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //Classe permet de gerer les categories
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/categorie")
 public class CategorieController {
 

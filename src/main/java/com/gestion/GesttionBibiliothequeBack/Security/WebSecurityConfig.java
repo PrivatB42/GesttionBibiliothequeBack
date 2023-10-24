@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@CrossOrigin
 public class WebSecurityConfig {
 
 
@@ -53,6 +54,7 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+    @CrossOrigin
     @Bean()
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 //Cette classe permet de gerer les utilisateurs
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/biblio/users")
 public class UserController {
 
