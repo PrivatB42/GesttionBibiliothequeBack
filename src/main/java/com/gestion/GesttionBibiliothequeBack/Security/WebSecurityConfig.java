@@ -11,19 +11,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig implements WebMvcConfigurer {
+public class WebSecurityConfig {
 
 
+    @CrossOrigin
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -48,43 +49,43 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 )
                 .csrf(AbstractHttpConfigurer::disable
                 )
-                .cors(AbstractHttpConfigurer::disable);
+                /*.cors(AbstractHttpConfigurer::disable)*/;
         return http.build();
     }
 
     @Bean()
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+/*
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH", "OPTIONS"));
+*/
         configuration.applyPermitDefaultValues();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
+        configuration.addAllowedMethod("GET");
+        configuration.addAllowedMethod("POST");
+        configuration.addAllowedMethod("PUT");
+        configuration.addAllowedMethod("DELETE");
+        configuration.addAllowedMethod("PATCH");
+        configuration.addAllowedMethod("OPTIONS");
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
-    /*@Bean
+   /* @Bean
     public CorsWebFilter corsFilter() {
 
         CorsConfiguration config = new CorsConfiguration();
-
-        // Possibly...
-        // config.applyPermitDefaultValues()
-
         config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
-        CorsConfigurationSource res = (CorsConfigurationSource) source;
-
-        return new CorsWebFilter(res);
+        return new CorsWebFilter((CorsConfigurationSource) source);
     }*/
 
    /* @Bean
