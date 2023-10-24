@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -13,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -53,7 +52,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         return http.build();
     }
 
-    @Bean("corsConfigurationSource")
+    @Bean()
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
@@ -64,7 +63,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         return source;
     }
 
-   /* @Bean
+    /*@Bean
     public CorsWebFilter corsFilter() {
 
         CorsConfiguration config = new CorsConfiguration();
@@ -80,7 +79,9 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
-        return new CorsWebFilter((org.springframework.web.cors.reactive.CorsConfigurationSource) source);
+        CorsConfigurationSource res = (CorsConfigurationSource) source;
+
+        return new CorsWebFilter(res);
     }*/
 
    /* @Bean
