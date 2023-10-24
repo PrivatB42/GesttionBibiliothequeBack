@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 //Cette classe permet de gerer les utilisateurs
+@CrossOrigin
 @RestController
 @RequestMapping("/biblio/users")
 public class UserController {
@@ -22,31 +23,37 @@ public class UserController {
     @Autowired
     private RoleRepository repo;
 
+    @CrossOrigin
     @PostMapping("/save")
     public User SaveUser(@RequestBody User user){
         return service.Save(user);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public User GetOneUser(@PathVariable int id){
         return service.getUserById(id);
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<User> getUsers(){
         return service.getUsers();
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable int id){
         service.deleteById(id);
     }
 
+    @CrossOrigin
     @GetMapping("/role/all")
     public List<Role> getAllRoles(){
         return repo.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/role/{id}")
     public Role getRole(@PathVariable int id){
         Optional<Role> role = repo.findById(id);

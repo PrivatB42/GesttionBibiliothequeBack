@@ -9,6 +9,7 @@ import java.util.List;
 
 
 //Cette classe permet de gerer les livres
+@CrossOrigin
 @RestController
 @RequestMapping("/biblio/livre")
 public class LivreController {
@@ -16,21 +17,25 @@ public class LivreController {
     @Autowired
     private LivreService service;
 
+    @CrossOrigin
     @PostMapping("/add")
     public Livre saveLivre(@RequestBody Livre livre){
         return service.Save(livre);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public Livre getLivre(@PathVariable int id){
         return service.getLivreById(id);
     }
 
+    @CrossOrigin
     @GetMapping("/all")
     public List<Livre> getLivreList(){
         return service.getLivre();
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public void deletecategorie(@PathVariable int id){
         service.deleteById(id);

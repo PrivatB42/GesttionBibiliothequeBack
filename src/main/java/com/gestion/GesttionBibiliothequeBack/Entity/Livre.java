@@ -12,16 +12,17 @@ public class Livre {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int Id;
+    private int id;
 
-    @Column(name="titre", length=45, nullable=false)
-    private String Titre;
+    @Column(name="titre", length=45)
+    private String titre;
 
+    @Column(name ="datedeparution")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date DatedeParution;
+    private Date datedeparution;
 
     @Column(name="nomauteur",length = 45)
-    private String NomAuteur;
+    private String nomauteur;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")

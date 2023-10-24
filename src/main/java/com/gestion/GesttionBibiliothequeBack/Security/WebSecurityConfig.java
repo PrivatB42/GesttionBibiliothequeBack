@@ -12,10 +12,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class WebSecurityConfig implements WebMvcConfigurer {
 
 
     @Bean
@@ -33,18 +40,48 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .defaultSuccessUrl("/biblio/livre/all")
                         .permitAll()
-                )
+                )/*.formLogin(Customizer.withDefaults())*/
                 .logout((logout) -> logout
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login").permitAll()
-                );
-                /*.csrf(AbstractHttpConfigurer::disable
                 )
-                .cors(AbstractHttpConfigurer::disable);*/
+                .csrf(AbstractHttpConfigurer::disable
+                )
+                .cors(AbstractHttpConfigurer::disable);
         return http.build();
     }
+
+    @Bean("corsConfigurationSource")
+    public CorsConfigurationSource getCorsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+        configuration.applyPermitDefaultValues();
+        configuration.addAllowedOrigin("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+   /* @Bean
+    public CorsWebFilter corsFilter() {
+
+        CorsConfiguration config = new CorsConfiguration();
+
+        // Possibly...
+        // config.applyPermitDefaultValues()
+
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+
+        return new CorsWebFilter((org.springframework.web.cors.reactive.CorsConfigurationSource) source);
+    }*/
 
    /* @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

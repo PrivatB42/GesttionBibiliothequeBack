@@ -1,6 +1,5 @@
 package com.gestion.GesttionBibiliothequeBack.Service;
 
-import com.gestion.GesttionBibiliothequeBack.Entity.Consultation;
 import com.gestion.GesttionBibiliothequeBack.Entity.User;
 import com.gestion.GesttionBibiliothequeBack.Exception.UserNotFoundException;
 import com.gestion.GesttionBibiliothequeBack.Repository.UserRepository;
