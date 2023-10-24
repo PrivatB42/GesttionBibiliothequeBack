@@ -21,11 +21,11 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class WebSecurityConfig {
 
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -54,8 +54,7 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    @CrossOrigin
-    @Bean()
+    @Bean
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 /*
@@ -75,43 +74,6 @@ public class WebSecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
-   /* @Bean
-    public CorsWebFilter corsFilter() {
-
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-
-        return new CorsWebFilter((CorsConfigurationSource) source);
-    }*/
-
-   /* @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/biblio/users/all" ).hasRole("ADMIN");
-            auth.requestMatchers("/biblio/exemplaire").hasRole("USER");
-            auth.anyRequest().authenticated();
-        }).formLogin(Customizer.withDefaults()).build();
-    }*/
-
-
-
-   /* @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("admin")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }*/
-
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

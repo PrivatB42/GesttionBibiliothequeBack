@@ -1,3 +1,4 @@
+/*
 package com.gestion.GesttionBibiliothequeBack.Security;
 
 import org.springframework.http.ResponseEntity;
@@ -8,9 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+*/
 /*
 @RestController
-*/
+*//*
+
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
@@ -19,7 +22,9 @@ public class LoginController {
         this.authenticationManager = authenticationManager;
     }
 
-    /*@PostMapping("/login")*/
+    */
+/*@PostMapping("/login")*//*
+
     public ResponseEntity<Void> login(@RequestBody LoginRequest loginRequest) {
         Authentication authenticationRequest =
                 UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(), loginRequest.password());
@@ -32,4 +37,4 @@ public class LoginController {
     public record LoginRequest(String username, String password) {
     }
 
-}
+}*/

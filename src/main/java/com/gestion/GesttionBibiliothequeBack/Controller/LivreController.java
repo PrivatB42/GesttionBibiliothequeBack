@@ -10,32 +10,32 @@ import java.util.List;
 
 //Cette classe permet de gerer les livres
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/biblio/livre")
 public class LivreController {
 
     @Autowired
     private LivreService service;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/add")
     public Livre saveLivre(@RequestBody Livre livre){
         return service.Save(livre);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public Livre getLivre(@PathVariable int id){
         return service.getLivreById(id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/all")
     public List<Livre> getLivreList(){
         return service.getLivre();
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/delete/{id}")
     public void deletecategorie(@PathVariable int id){
         service.deleteById(id);

@@ -9,32 +9,32 @@ import java.util.List;
 
 //Classe permet de gerer les categories
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/biblio/categorie")
 public class CategorieController {
 
     @Autowired
     private CategorieService service;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/add")
     public Categorie savecategorie(@RequestBody Categorie categorie){
         return service.Save(categorie);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public Categorie getcategorie(@PathVariable int id){
         return service.findById(id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/all")
     public List<Categorie> getcategorieList(){
         return service.getCategorie();
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/delete/{id}")
     public void deletecategorie(@PathVariable int id){
         service.deleteById(id);

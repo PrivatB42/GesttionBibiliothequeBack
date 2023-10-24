@@ -9,38 +9,38 @@ import java.util.List;
 
 //Classe permet de gerer les emprunts
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/biblio/emprunt")
 public class EmpruntController {
 
     @Autowired
     private EmpruntService service;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/add")
     public Emprunt addemprunt(@RequestBody Emprunt emprunt) {
         return service.Save(emprunt);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/retour/{id}")
     public Emprunt RetourEmprunt(@PathVariable int id) {
         return service.RetoutEmprunt(id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public Emprunt getEmprunt(@PathVariable int id){
         return service.getEmpruntById(id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/all")
     public List<Emprunt> getEmpruntList(){
         return service.getEmprunt();
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable int id){
         service.deleteById(id);
