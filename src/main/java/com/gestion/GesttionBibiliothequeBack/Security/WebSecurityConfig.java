@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                 )
                 .csrf(AbstractHttpConfigurer::disable
                 )
-                /*.cors(AbstractHttpConfigurer::disable)*/;
+                .cors(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
