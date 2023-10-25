@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class WebSecurityConfig {
 
 
