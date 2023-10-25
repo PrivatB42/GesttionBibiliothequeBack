@@ -1,6 +1,7 @@
 package com.gestion.GesttionBibiliothequeBack.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AdviceModeImportSelector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -30,6 +31,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 /*.securityMatcher("/biblio")*/
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
                                 "/biblio/exemplaire/add", "/biblio/exemplaire/delete/**", "/biblio/categorie/add",
@@ -49,8 +51,7 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/login").permitAll()
                 )
                 .csrf(AbstractHttpConfigurer::disable
-                )
-                .cors(AbstractHttpConfigurer::disable);
+                );
         return http.build();
     }
 
