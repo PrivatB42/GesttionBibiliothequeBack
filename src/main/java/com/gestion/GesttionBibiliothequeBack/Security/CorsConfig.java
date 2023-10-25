@@ -15,7 +15,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("") // Autorise toutes les origines (désactive la vérification CORS)
+                        .allowedOrigins("*") // Autorise toutes les origines (désactive la vérification CORS)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                         .allowCredentials(false)
                         .allowedHeaders("*");

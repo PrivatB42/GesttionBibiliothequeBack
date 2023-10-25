@@ -26,12 +26,12 @@ import java.util.Arrays;
 public class WebSecurityConfig {
 
 
-    /*@Bean(name = "corsConfiguration")
+    @Bean(name = "corsConfiguration")
     public CorsConfigurationSource getCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-*//*
+
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH", "OPTIONS"));
-*//*
+
         configuration.applyPermitDefaultValues();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedHeader("*");
@@ -45,7 +45,7 @@ public class WebSecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }*/
+    }
 
 
     @Bean
@@ -53,21 +53,8 @@ public class WebSecurityConfig {
         http
                 /*.securityMatcher("/biblio")*/
                 .cors(AbstractHttpConfigurer::disable)
-                /*.cors(httpSecurityCorsConfigurer -> {
-                    CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.applyPermitDefaultValues();
-                    configuration.addAllowedOrigin("*");
-                    configuration.addAllowedHeader("*");
-                    configuration.addAllowedMethod("GET");
-                    configuration.addAllowedMethod("POST");
-                    configuration.addAllowedMethod("PUT");
-                    configuration.addAllowedMethod("DELETE");
-                    configuration.addAllowedMethod("PATCH");
-                    configuration.addAllowedMethod("OPTIONS");
-                    configuration.setAllowCredentials(true);
-                    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                    source.registerCorsConfiguration("/**", configuration);
-                })*/
+                .csrf(AbstractHttpConfigurer::disable
+                )
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
                                 "/biblio/exemplaire/add", "/biblio/exemplaire/delete/**", "/biblio/categorie/add",
@@ -85,8 +72,6 @@ public class WebSecurityConfig {
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login").permitAll()
-                )
-                .csrf(AbstractHttpConfigurer::disable
                 );
         return http.build();
     }
