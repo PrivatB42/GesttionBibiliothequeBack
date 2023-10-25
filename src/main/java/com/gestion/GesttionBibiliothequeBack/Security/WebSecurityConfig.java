@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class WebSecurityConfig {
 
 
@@ -52,8 +52,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 /*.securityMatcher("/biblio")*/
-                /*.cors(AbstractHttpConfigurer::disable)*/
-                .cors(httpSecurityCorsConfigurer -> {
+                .cors(AbstractHttpConfigurer::disable)
+                /*.cors(httpSecurityCorsConfigurer -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.applyPermitDefaultValues();
                     configuration.addAllowedOrigin("*");
@@ -67,7 +67,7 @@ public class WebSecurityConfig {
                     configuration.setAllowCredentials(true);
                     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
                     source.registerCorsConfiguration("/**", configuration);
-                })
+                })*/
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
                                 "/biblio/exemplaire/add", "/biblio/exemplaire/delete/**", "/biblio/categorie/add",
