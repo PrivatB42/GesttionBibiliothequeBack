@@ -1,3 +1,4 @@
+/*
 package com.gestion.GesttionBibiliothequeBack.Security;
 
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*") // Autorise toutes les origines (désactive la vérification CORS)
+                        .allowedOrigins("http://localhost:5173/") // Autorise toutes les origines (désactive la vérification CORS)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                         .allowCredentials(false)
                         .allowedHeaders("*");
@@ -23,3 +24,4 @@ public class CorsConfig {
         };
     }
 }
+*/
