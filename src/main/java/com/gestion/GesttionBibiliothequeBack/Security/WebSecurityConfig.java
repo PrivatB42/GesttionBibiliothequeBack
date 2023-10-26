@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AdviceModeImportSelector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -77,23 +78,24 @@ public class WebSecurityConfig {
                 .addFilterBefore(corsFilter(), SessionManagementFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
+                        /*.requestMatchers( "/biblio/users/**", "/biblio/livre/add", "/biblio/livre/delete/**",
                                 "/biblio/exemplaire/add", "/biblio/exemplaire/delete/**", "/biblio/categorie/add",
                                 "/biblio/categorie/delete" ).hasRole("ADMIN")
-                        .requestMatchers("/biblio/exemplaire").hasRole("USER")
+                        .requestMatchers("/biblio/exemplaire").hasRole("USER")*/
                         .anyRequest().authenticated()
-                ).sessionManagement((request) -> request
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                )/*.sessionManagement((request) -> request
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))*/
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        /*.loginPage("/")*/
                         .defaultSuccessUrl("/biblio/livre/all")
                         .permitAll()
-                )/*.formLogin(Customizer.withDefaults())*/
+                )
                 .logout((logout) -> logout
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login").permitAll()
+                        /*.logoutSuccessUrl("/login")*/.permitAll()
                 );
 
         return http.build();
@@ -117,24 +119,5 @@ public class WebSecurityConfig {
 
         return authProvider;
     }
-
-   /* @Bean
-    public AuthenticationManager authenticationManager(
-            UserDetailsService userDetailsService,
-            PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-
-        return new ProviderManager(authenticationProvider);
-    }*/
-
-   /* @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-*/
-
-
 
 }

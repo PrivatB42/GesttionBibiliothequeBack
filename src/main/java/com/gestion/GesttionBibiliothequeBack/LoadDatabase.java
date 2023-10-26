@@ -28,7 +28,7 @@ public class LoadDatabase {
         return args -> {
             log.info("Preloading " + repository.save(new Role(1,"ADMIN")));
             log.info("Preloading " + repository.save(new Role(2,"USER")));
-            log.info("preloading " + userRepository.save(new User(1,"admin", "default", "admin", "admin@adin.com",encoder.encode("admin"),repository.findById(1).get())));
+            log.info("preloading " + userRepository.save(new User(1,"admin", "default", "admin", "admin@admin.com",encoder.encode("admin"),repository.findById(1).get())));
             log.info("preloading " + userRepository.save(new User(2,"user", "default", "user", "user@user.com",encoder.encode("user") ,repository.findById(2).get())));
         };
     }

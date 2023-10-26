@@ -12,9 +12,6 @@ import java.util.Optional;
 
 //Cette classe permet de gerer les utilisateurs
 @RestController
-/*
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
 @RequestMapping("/biblio/users")
 public class UserController {
 
@@ -25,49 +22,31 @@ public class UserController {
     @Autowired
     private RoleRepository repo;
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @PostMapping("/save")
     public User SaveUser(@RequestBody User user){
         return service.Save(user);
     }
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @GetMapping("/{id}")
     public User GetOneUser(@PathVariable int id){
         return service.getUserById(id);
     }
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @GetMapping("/all")
     public List<User> getUsers(){
         return service.getUsers();
     }
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable int id){
         service.deleteById(id);
     }
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @GetMapping("/role/all")
     public List<Role> getAllRoles(){
         return repo.findAll();
     }
 
-/*
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-*/
     @GetMapping("/role/{id}")
     public Role getRole(@PathVariable int id){
         Optional<Role> role = repo.findById(id);
